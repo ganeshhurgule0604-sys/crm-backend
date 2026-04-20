@@ -1,0 +1,41 @@
+export enum configurationEnum {
+  BHK_1 = '1BHK',
+  BHK_2 = '2BHK',
+  BHK_3 = '3BHK',
+  BHK_4 = '4BHK',
+  BHK_5 = '5BHK',
+  VILLA = 'VILLA',
+  ROWHOUSE = 'ROWHOUSE',
+  SHOP = 'SHOP',
+  OFFICE = 'OFFICE',
+  COMMERCIAL = 'COMMERCIAL',
+  PLOT = 'PLOT',
+  FARM_LAND = 'FARM_LAND',
+  DUPLEX = 'DUPLEX',
+  PENTHOUSE = 'PENTHOUSE',
+}
+
+export enum LeadSourceEnum {
+  WEBSITE = 'WEBSITE',
+  FACEBOOK = 'FACEBOOK',
+  INSTAGRAM = 'INSTAGRAM',
+  GOOGLE_ADS = 'GOOGLE_ADS',
+  REFERRAL = 'REFERRAL',
+  WALK_IN = 'WALK_IN',
+  TELECALLING = 'TELECALLING',
+  PROPERTY_PORTAL = 'PROPERTY_PORTAL',
+  WHATSAPP = 'WHATSAPP',
+  OTHER = 'OTHER',
+}
+
+export enum BudgetRangeEnum {
+  BELOW_50L = 'BELOW_50L',
+  FIFTY_L_TO_1CR = '50L_TO_1CR',
+  ONE_CR_TO_2CR = '1CR_TO_2CR',
+  ABOVE_2CR = 'ABOVE_2CR',
+}
+
+export enum LeadStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
