@@ -92,7 +92,7 @@ export class UserService {
 
       metaData: {
         total: count,
-        page: dto.offset,
+        page: dto.page,
         limit: dto.limit,
       },
     };

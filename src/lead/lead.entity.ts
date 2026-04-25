@@ -1,10 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BaseEntity,
-  ManyToOne,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 import {
   BudgetRangeEnum,
@@ -14,9 +8,9 @@ import {
 } from './lead.enum';
 import { Project } from 'src/project/project.entity';
 import { User } from 'src/user/user.entity';
-
+import { CommonEntity } from 'src/common/base.entity';
 @Entity('lead')
-export class Lead extends BaseEntity {
+export class Lead extends CommonEntity {
   @PrimaryGeneratedColumn()
   id?: number;
 
@@ -46,7 +40,7 @@ export class Lead extends BaseEntity {
   @Column({
     type: 'enum',
     enum: LeadStatus,
-    default: LeadStatus.INACTIVE,
+    default: LeadStatus.ACTIVE,
   })
   status?: LeadStatus;
 

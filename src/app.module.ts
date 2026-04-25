@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './project/project.module';
 import { LeadModule } from './lead/lead.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { LeadModule } from './lead/lead.module';
     AuthModule,
     ProjectModule,
     LeadModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

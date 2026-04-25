@@ -104,8 +104,8 @@ export class ProjectService {
     return {
       data: result.map((x) => this.mapProject(x)),
       metaData: {
-        totalItem: count,
-        page: dto.offset,
+        total: count,
+        page: dto.page,
         limit: dto.limit,
       },
     };

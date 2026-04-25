@@ -11,6 +11,10 @@ export class LeadController {
     return this.leadService.createLead(dto);
   }
 
+  @Get('master-data')
+  leadMasterData() {
+    return this.leadService.masterData();
+  }
   @Get()
   findAll(@Query() dto: LeadListDto) {
     return this.leadService.getLeadList(dto);

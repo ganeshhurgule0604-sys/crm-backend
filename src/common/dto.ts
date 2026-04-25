@@ -9,7 +9,7 @@ export class ResponseDto<T> {
 export class PaginationDto {
   limit?: number;
 
-  offset?: number;
+  page?: number;
 }
 
 export class commonCreateUpdateResponseDto {

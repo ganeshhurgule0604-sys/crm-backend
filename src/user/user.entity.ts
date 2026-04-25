@@ -1,9 +1,10 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { userRole } from './user.enum';
 import { Lead } from 'src/lead/lead.entity';
+import { CommonEntity } from 'src/common/base.entity';
 
 @Entity()
-export class User {
+export class User extends CommonEntity {
   @PrimaryGeneratedColumn()
   id?: number;
 

@@ -1,38 +1,26 @@
-import { Column } from 'typeorm';
+import {
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  Column,
+} from 'typeorm';
 
-export class BaseEntity {
-  @Column({
-    type: 'date',
-    name: 'created_at',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
+export class CommonEntity {
+  @CreateDateColumn({ name: 'created_at' })
   createdAt?: Date;
-  @Column({
-    type: 'date',
-    name: 'created_at',
-  })
+
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt?: Date;
-  @Column({
-    type: 'date',
-    name: 'created_at',
-  })
+
+  @DeleteDateColumn({ name: 'deleted_at', nullable: true })
   deletedAt?: Date;
 
-  @Column({
-    type: 'integer',
-    name: 'created_by',
-  })
+  @Column({ type: 'int', nullable: true })
   createdBy?: number;
 
-  @Column({
-    type: 'integer',
-    name: 'updated_by',
-  })
+  @Column({ type: 'int', nullable: true })
   updatedBy?: number;
 
-  @Column({
-    type: 'integer',
-    name: 'deleted_by',
-  })
+  @Column({ type: 'int', nullable: true })
   deletedBy?: number;
 }

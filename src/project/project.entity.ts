@@ -1,9 +1,10 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { projectStatus } from './projet.enum';
 import { Lead } from 'src/lead/lead.entity';
+import { CommonEntity } from 'src/common/base.entity';
 
 @Entity()
-export class Project {
+export class Project extends CommonEntity {
   @PrimaryGeneratedColumn()
   id?: number;
 
@@ -13,7 +14,7 @@ export class Project {
   @Column({
     type: 'enum',
     enum: projectStatus,
-    default: projectStatus.INACTIVE,
+    default: projectStatus.ACTIVE,
   })
   status?: projectStatus;
 

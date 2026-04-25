@@ -34,7 +34,7 @@ export class UserRepository {
   }
 
   userList(dto: userListDto) {
-    const { name, email, phone, role, limit = 10, offset = 1 } = dto;
+    const { name, email, phone, role, limit = 10, page = 1 } = dto;
 
     const query = this.userRepository.createQueryBuilder('user');
 
@@ -57,7 +57,7 @@ export class UserRepository {
       });
     }
 
-    query.take(limit).skip((offset - 1) * limit);
+    query.take(limit).skip((page - 1) * limit);
 
     return query.getManyAndCount();
   }

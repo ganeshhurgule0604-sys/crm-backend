@@ -2,6 +2,11 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { LeadRepository } from './lead.repository';
 import { createLeadRequestDto, LeadListDto, leadDto } from './lead.dto';
 import { ResponseDto, commonCreateUpdateResponseDto } from 'src/common/dto';
+import {
+  BudgetRangeEnum,
+  configurationEnum,
+  LeadSourceEnum,
+} from './lead.enum';
 
 @Injectable()
 export class LeadService {
@@ -44,15 +49,54 @@ export class LeadService {
   }
 
   async getLeadList(dto: LeadListDto) {
-    const { data, total, offset, limit } =
-      await this.leadRepository.getList(dto);
+    const { data, total, page, limit } = await this.leadRepository.getList(dto);
     return {
       data: data,
       metaData: {
         total,
-        page: offset,
+        page: page,
         limit,
       },
     };
+  }
+  masterData() {
+    return {
+      data: {
+        configuration: configurationEnum,
+        budget: BudgetRangeEnum,
+        source: LeadSourceEnum,
+      },
+      metadata: {},
+    };
+  }
+  async countLeads(startDate?: string, endDate?: string): Promise<number> {
+    return this.leadRepository.countLeads(startDate, endDate);
+  }
+
+  async countTodayLeads(): Promise<number> {
+    return this.leadRepository.countTodayLeads();
+  }
+
+  async getStatusWise(
+    startDate?: string,
+    endDate?: string,
+  ): Promise<{ status: string; count: number }[]> {
+    return this.leadRepository.getStatusWise(startDate, endDate);
+  }
+
+  async getSourceWise(
+    startDate?: string,
+    endDate?: string,
+  ): Promise<{ source: string; count: number }[]> {
+    return this.leadRepository.getSourceWise(startDate, endDate);
+  }
+
+  async getOwnerWise(
+    startDate?: string,
+    endDate?: string,
+  ): Promise<
+    { ownerId: number | null; ownerName: string | null; count: number }[]
+  > {
+    return this.leadRepository.getOwnerWise(startDate, endDate);
   }
 }
