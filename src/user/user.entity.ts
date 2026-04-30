@@ -2,6 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { userRole } from './user.enum';
 import { Lead } from 'src/lead/lead.entity';
 import { CommonEntity } from 'src/common/base.entity';
+import { Task } from 'src/task/task.entity';
 
 @Entity()
 export class User extends CommonEntity {
@@ -25,4 +26,7 @@ export class User extends CommonEntity {
 
   @OneToMany(() => Lead, (lead) => lead.owner)
   leads?: Lead[];
+
+  @OneToMany(() => Task, (task) => task.assignee)
+  tasks?: Task[];
 }

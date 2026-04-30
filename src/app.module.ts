@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './project/project.module';
 import { LeadModule } from './lead/lead.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'postgres',
+      password: 'root',
       autoLoadEntities: true,
       synchronize: true,
     }),
@@ -25,6 +26,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     ProjectModule,
     LeadModule,
     DashboardModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
