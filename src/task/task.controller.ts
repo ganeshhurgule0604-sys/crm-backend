@@ -5,10 +5,11 @@ import {
   Body,
   Param,
   Patch,
-  Delete,
+  Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
-import { Task } from './task.entity';
+import { CreateTaskDto, TaskFindDto } from './task.dto';
 
 @Controller('task')
 export class TaskController {
@@ -16,31 +17,25 @@ export class TaskController {
 
   // ➕ Create Task
   @Post()
-  create(@Body() body: Partial<Task>) {
-    return this.taskService.create(body);
+  create(@Body() dto: CreateTaskDto) {
+    return this.taskService.createTask(dto);
   }
 
-  // 📋 Get All Tasks
+  // 📋 Get Task List (with filters + pagination)
   @Get()
-  findAll() {
-    return this.taskService.findAll();
+  getList(@Query() dto: TaskFindDto) {
+    return this.taskService.getList(dto);
   }
 
   // 🔍 Get Single Task
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.taskService.findOne(id);
+  getDetails(@Param('id', ParseIntPipe) id: number) {
+    return this.taskService.getTaskDetails(id);
   }
 
   // ✏️ Update Task
   @Patch(':id')
-  update(@Param('id') id: number, @Body() body: Partial<Task>) {
-    return this.taskService.update(id, body);
-  }
-
-  // ❌ Delete Task
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.taskService.remove(id);
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateTaskDto) {
+    return this.taskService.updateTask(id, dto);
   }
 }

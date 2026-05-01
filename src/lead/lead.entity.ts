@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 
 import {
   BudgetRangeEnum,
@@ -9,6 +15,7 @@ import {
 import { Project } from 'src/project/project.entity';
 import { User } from 'src/user/user.entity';
 import { CommonEntity } from 'src/common/base.entity';
+import { Task } from 'src/task/task.entity';
 @Entity('lead')
 export class Lead extends CommonEntity {
   @PrimaryGeneratedColumn()
@@ -56,4 +63,7 @@ export class Lead extends CommonEntity {
 
   @ManyToOne(() => User, (user) => user.leads)
   owner?: User;
+
+  @OneToMany(() => Task, (task) => task.lead)
+  tasks?: Task[];
 }

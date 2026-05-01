@@ -1,9 +1,17 @@
 import { IsOptional } from 'class-validator';
+import { PaginationDto } from 'src/common/dto';
 import { PrimaryGeneratedColumn } from 'typeorm';
 
 export enum TaskStatus {
   ACTIVE = 'active',
   INACTIVE = 'in_active',
+}
+
+export enum TaskType {
+  CALL = 'call',
+  WHATAPP = 'whatapp',
+  SMS = 'sms',
+  OTHER = 'other',
 }
 export class TaskDto {
   @PrimaryGeneratedColumn()
@@ -17,6 +25,8 @@ export class TaskDto {
 
   @IsOptional()
   dueAt?: Date;
+
+  taskType?: TaskType;
 
   status?: TaskStatus;
 }
@@ -32,4 +42,16 @@ export class CreateTaskDto {
   dueAt?: Date;
 
   status?: TaskStatus;
+}
+
+export class TaskFindDto extends PaginationDto {
+  title?: string;
+
+  taskType?: TaskType;
+
+  toDate?: Date;
+
+  fromDate?: Date;
+
+  leadId?: number;
 }

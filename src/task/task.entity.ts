@@ -7,7 +7,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { TaskStatus } from './task.dto';
+import { TaskStatus, TaskType } from './task.dto';
+import { Lead } from 'src/lead/lead.entity';
 
 @Entity()
 export class Task extends CommonEntity {
@@ -26,4 +27,11 @@ export class Task extends CommonEntity {
 
   @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.ACTIVE })
   status?: TaskStatus;
+
+  @Column({ type: 'enum', enum: TaskType, nullable: true })
+  taskType?: TaskType;
+
+  @ManyToOne(() => Lead, (lead) => lead.tasks, { nullable: true })
+  @JoinColumn({ name: 'lead_id' })
+  lead?: Lead;
 }
