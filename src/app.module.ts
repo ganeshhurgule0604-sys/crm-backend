@@ -8,18 +8,17 @@ import { ProjectModule } from './project/project.module';
 import { LeadModule } from './lead/lead.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TaskModule } from './task/task.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { databaseConfig } from './config/database.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'crm',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'root',
-      autoLoadEntities: true,
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal:true
+    }),
+    TypeOrmModule.forRootAsync({
+      inject:[ConfigService],
+      useFactory:databaseConfig
     }),
     UserModule,
     AuthModule,
